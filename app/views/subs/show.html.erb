@@ -1,0 +1,21 @@
+<h1>Links for <%= @sub.name %></h1>
+
+<%= "Moderated by: #{@sub.moderating_user.username}" %>
+<br>
+<% if @sub.links %>
+  <ul>
+  <% @sub.links.each do |link| %>
+    <li><%= link_to(link.title, link_url(link)) %></li>
+  <% end %>
+  </ul>
+<% end %>
+<br>
+<br>
+<%= link_to("Submit a new link", new_link_url)%>
+<br>
+<br>
+<% if current_user.id == @sub.moderating_user.id %>
+  <%= link_to("Edit Sub Properties", edit_sub_url(@sub)) %>
+<% end %>
+<br>
+<br>

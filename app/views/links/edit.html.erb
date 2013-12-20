@@ -1,0 +1,29 @@
+<h1>Edit Link</h1>
+
+<form action="<%= link_url(@link)%>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="link_sub_id">Sub</label>
+  <select name="link[sub_id]" id="link_sub_id">
+    <% Sub.all.each do |sub| %>
+      <option value="<%= sub.id %>" <%= "selected" if sub.id == @link.sub_id%>><%= sub.name %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="link_title">Title</label>
+  <input type="text" id="link_title" name="link[title]" value="<%= @link.title %>">
+  <br>
+
+  <label for="link_url">URL</label>
+  <input type="text" id="link_url" name="link[url]" value="<%= @link.url %>">
+  <br>
+
+  <label for="link_description">Description (Optional)</label>
+  <input type="text" id="link_description" name="link[description]" value="<%= @link.description %>">
+  <br>
+
+  <input type="submit" value="Edit">
+
+</form>

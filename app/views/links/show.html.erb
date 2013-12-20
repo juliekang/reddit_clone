@@ -1,0 +1,19 @@
+<h1><%= @link.title %></h1>
+<!-- start from here. -->
+<%= "Submitted by: #{@link.submitting_user.username}" %>
+<br>
+<%=link_to @link.url, @link_url %>
+<br>
+<%= @link.description %>
+<br>
+<br>
+<% if current_user.id == @link.submitting_user.id %>
+  <%= link_to("Edit Link Properties", edit_link_url(@link)) %>
+<% end %>
+<br>
+<br>
+<% if @comments %>
+  <%= @link.print_comment(nil) %>
+<% end %>
+<br>
+<br>

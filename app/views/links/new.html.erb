@@ -1,0 +1,28 @@
+<h1>Submit New Link</h1>
+
+<form action="/links" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="link[submitter]" value="<%= current_user.id%>">
+
+  <label for="link_sub_id">Sub</label>
+  <select name="link[sub_id]" id="link_sub_id">
+    <% Sub.all.each do |sub| %>
+      <option value="<%= sub.id %>"><%= sub.name %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="link_title">Title</label>
+  <input type="text" id="link_title" name="link[title]">
+  <br>
+
+  <label for="link_url">URL</label>
+  <input type="text" id="link_url" name="link[url]">
+  <br>
+
+  <label for="link_description">Description (Optional)</label>
+  <input type="text" id="link_description" name="link[description]">
+  <br>
+  <input type="submit" value="Create">
+</form>

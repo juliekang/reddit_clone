@@ -1,0 +1,22 @@
+<h1>Create New Sub</h1>
+
+<form action="/subs" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="sub[moderator]" value="<%= current_user.id%>">
+  <label for="sub_name">Name</label>
+  <input type="text" id="sub_name" name="sub[name]">
+  <br>
+  <% @sub.links.each do |link| %>
+  <input type="hidden" name="sub[links_attributes][<%= link.object_id %>][submitter]" value="<%= current_user.id %>">
+  <label for="link_title<%= link.object_id%>">Title</label>
+  <input type="text" id="link_title<%= link.object_id%>" name="sub[links_attributes][<%= link.object_id %>][title]">
+  <br>
+  <label for="link_url<%= link.object_id%>">URL</label>
+  <input type="text" id="link_url<%= link.object_id%>" name="sub[links_attributes][<%= link.object_id %>][url]">
+  <br>
+  <label for="link_description<%= link.object_id%>">Description(Optional)</label>
+  <input type="text" id="link_description<%= link.object_id%>" name="sub[links_attributes][<%= link.object_id %>][description]">
+  <br>
+  <% end %>
+  <input type="submit" value="Create Sub">
+</form>
